@@ -27,7 +27,8 @@ function GeneralTabs() {
                 options={{
                     tabBarIcon: props => (
                         <FAIcon name="user" {...props} />
-                    )
+                    ),
+                    title: "Profil"
                 }}
             />
             <Tab.Screen
@@ -37,7 +38,7 @@ function GeneralTabs() {
                     tabBarIcon: props => (
                         <FA5Icon name="tasks" {...props} />
                     ),
-                    headerShown: false
+                    headerShown: false,
                 }}
             />
             <Tab.Screen

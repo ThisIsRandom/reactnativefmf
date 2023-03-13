@@ -12,10 +12,16 @@ const MessageStack = () => {
             <Stack.Screen
                 name="messages"
                 component={MessagesScreen}
+                options={{
+                    title: "Beskeder"
+                }}
             />
             <Stack.Screen
                 name="message"
                 component={MessageScreen}
+                options={{
+                    title: "Besked"
+                }}
             />
         </Stack.Navigator>
     )

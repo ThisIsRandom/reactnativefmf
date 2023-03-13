@@ -11,10 +11,16 @@ const TaskStack = () => {
             <Stack.Screen
                 name="tasks"
                 component={TasksScreen}
+                options={{
+                    title: "Opgaver"
+                }}
             />
             <Stack.Screen
                 name="task-detail"
                 component={TaskDetailScreen}
+                options={{
+                    title: "Opgave"
+                }}
             />
         </Stack.Navigator>
     )
