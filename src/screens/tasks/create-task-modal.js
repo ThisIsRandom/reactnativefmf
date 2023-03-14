@@ -19,14 +19,14 @@ const CreateTaskModal = ({ modalVisible, setModalVisible }) => {
                 <Modal.Header>Opret opgave</Modal.Header>
                 <Modal.Body>
                     <FormControl>
-                        <FormControl.Label>Title</FormControl.Label>
+                        <FormControl.Label>Titel</FormControl.Label>
                         <Input
                             onChangeText={v => dispatch({ title: v })}
                             value={state.title}
                         />
                     </FormControl>
                     <FormControl>
-                        <FormControl.Label>Description</FormControl.Label>
+                        <FormControl.Label>Beskrivelse</FormControl.Label>
                         <Input
                             onChangeText={v => dispatch({ description: v })}
                             value={state.description}
@@ -35,13 +35,18 @@ const CreateTaskModal = ({ modalVisible, setModalVisible }) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button.Group space={2}>
-                        <Button variant="ghost" colorScheme="blueGray" onPress={() => {
-                            setModalVisible(false);
-                        }}>
+                        <Button 
+                            variant="unstyled"
+                            bg={"fmf.primary"}
+                            onPress={() => {
+                                setModalVisible(false);
+                            }}
+                        >
                             Luk
                         </Button>
                         <Button
                             onPress={() => mutation.mutate(state)}
+                            variant="unstyled"
                         >
                             Opret
                         </Button>

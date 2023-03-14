@@ -17,7 +17,7 @@ const ContactMessageModal = ({ modalVisible, setModalVisible, activeId }) => {
         <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)} >
             <Modal.Content>
                 <Modal.CloseButton />
-                <Modal.Header>Opret opgave</Modal.Header>
+                <Modal.Header>Svar opgave</Modal.Header>
                 <Modal.Body>
                     <FormControl>
                         <FormControl.Label>Pris</FormControl.Label>
@@ -36,9 +36,13 @@ const ContactMessageModal = ({ modalVisible, setModalVisible, activeId }) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button.Group space={2}>
-                        <Button variant="ghost" colorScheme="blueGray" onPress={() => {
-                            setModalVisible(false);
-                        }}>
+                        <Button 
+                            variant="unstyled" 
+                            onPress={() => {
+                                setModalVisible(false);
+                            }}
+                            bg={"fmf.primary"}
+                        >
                             Luk
                         </Button>
                         <Button
@@ -50,6 +54,7 @@ const ContactMessageModal = ({ modalVisible, setModalVisible, activeId }) => {
                                     id: activeId
                                 })
                             }}
+                            variant="unstyled"
                         >
                             Send
                         </Button>

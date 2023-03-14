@@ -55,8 +55,9 @@ const ProfileScreen = ({ navigation }) => {
                 <Button
                     variant="unstyled"
                     onPress={() => logout()}
+                    mr={2}
                 >
-                    <SimpleLineIcons name="logout" size={30} color="#595048" />
+                    <SimpleLineIcons name="logout" size={20} color="white" />
                 </Button>
             ),
         });

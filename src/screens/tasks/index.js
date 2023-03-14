@@ -4,6 +4,7 @@ import Loading from '../../components/loading';
 import useTasks from '../../service/task';
 import useUser from '../../service/user';
 import ContactMessageModal from './contact-message-modal';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import CreateTaskModal from './create-task-modal';
 import SingleTask from './single-task';
@@ -26,6 +27,10 @@ const TasksScreen = ({ navigation }) => {
                 <ScrollView
                     flex={1}
                 >
+                    <VStack
+                        space={"2"}
+                        mt={"2"}
+                    >
                     {
                         query.data.length
                             ? (
@@ -34,6 +39,7 @@ const TasksScreen = ({ navigation }) => {
                                         <Pressable
                                             key={idx}
                                             onPress={() => navigation.navigate("task-detail", { taskId: task.ID })}
+                                            alignItems={"center"}
                                         >
                                             <SingleTask
                                                 business={userQuery.data.profile.roleId != 1}
@@ -60,16 +66,24 @@ const TasksScreen = ({ navigation }) => {
                                 })
                             )
                             : (
-                                <Text>
+                                <Text
+                                    color={"black"}
+                                >
                                     Ingen opgaver
                                 </Text>
                             )
                     }
+                    </VStack>
                 </ScrollView>
                 <Button
+                    variant="unstyled"
+                    position="absolute"
+                    bottom={5}
+                    right={5}
+                    rounded={"100"}
                     onPress={() => setCreateModalVisible(p => !p)}
                 >
-                    Create Task
+                    <Ionicons name="create-outline" color="white" size={40}/>
                 </Button>
             </View>
             <CreateTaskModal

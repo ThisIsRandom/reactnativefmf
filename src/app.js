@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { NativeBaseProvider, View, Text } from 'native-base'
 import Nav from './navigators';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { AuthProvider } from './providers/auth';
 import { HttpProvider } from './providers/http';
+import ThemeProvider from './providers/theme';
 
 const queryClient = new QueryClient();
 
@@ -15,11 +15,11 @@ const App = () => {
                 <QueryClientProvider
                     client={queryClient}
                 >
-                    <NativeBaseProvider>
+                    <ThemeProvider>
                         <NavigationContainer>
                             <Nav />
                         </NavigationContainer>
-                    </NativeBaseProvider>
+                    </ThemeProvider>
                 </QueryClientProvider>
             </HttpProvider>
         </AuthProvider>

@@ -6,18 +6,34 @@ import FAIcon from 'react-native-vector-icons/FontAwesome'
 import FA5Icon from 'react-native-vector-icons/FontAwesome5'
 import MessageStack from './message.stack';
 import TaskStack from './task.stack';
+import { useToken } from 'native-base';
 
 const Tab = createBottomTabNavigator();
 
 function GeneralTabs() {
+    const [primaryColor, secondaryColor] = useToken( // the key within the theme, in this case `theme.colors`
+  'colors', // the subkey(s), resolving to `theme.colors.warning.1`
+  ['fmf.primary', 'fmf.secondary'] // a single fallback or fallback array matching the length of the previous arg
+  );
+
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+            screenOptions={{
+                tabBarLabelStyle: {
+                    color: secondaryColor
+                },
+                tabBarActiveTintColor: secondaryColor,
+                tabBarStyle: {
+                    backgroundColor: primaryColor
+                }
+            }}        
+        >
             <Tab.Screen
                 name="advertisement"
                 component={AdvertisementScreen}
                 options={{
                     tabBarIcon: props => (
-                        <MaterialIcon name="local-offer" {...props} />
+                        <MaterialIcon name="local-offer" {...props}/>
                     )
                 }}
             />

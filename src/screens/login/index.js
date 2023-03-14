@@ -1,7 +1,11 @@
-import { View, Text, Input, VStack, HStack, Button, Box } from 'native-base'
+import { View, Text, Input, VStack, HStack, Button, Box, theme } from 'native-base'
+import { Image } from 'react-native'
 import { useCallback, useState } from 'react';
 import { useAuthProvider } from '../../providers/auth';
 import useAuth from '../../service/auth';
+import Logo from '../../../images/Logo.png'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import Foundation from 'react-native-vector-icons/Foundation'
 
 const LoginScreen = ({ navigation }) => {
     const { login } = useAuth();
@@ -18,41 +22,60 @@ const LoginScreen = ({ navigation }) => {
         <View
             padding={10}
             flex={1}
+            bg="fmf.primary"
             justifyContent="center"
         >
-            <VStack
-                space="2xl"
+            <HStack
+                position={"absolute"}
+                top={0}
+                flexDirection={"row"}
+                space="2"
+                p={2}
+                left={0}
             >
-                <Box
-                    w={100}
-                    h={100}
-                    bg="red.100"
-                    marginX="auto"
+                <Button
+                    onPress={() => setCredentials({ email: "test@test.dk", password: "test" })}
+                    bg={"fmf.secondary"}
+                    width={12}
+                    alignItems={"center"}
                 >
-                    Image
-                </Box>
-                <Box>
-                    <Button
-                        onPress={() => setCredentials({ email: "test@test.dk", password: "test" })}
-                    >
-                        as user
-                    </Button>
-                    <Button
-                        onPress={() => setCredentials({ email: "business@business.dk", password: "test" })}
-
-                    >
-                        as business
-                    </Button>
-                </Box>
+                    <AntDesign name="user" size={20} width={20}/>
+                </Button>
+                <Button
+                    onPress={() => setCredentials({ email: "business@business.dk", password: "test" })}
+                    background={"fmf.secondary"}
+                    alignItems={"center"}
+                    width={12}
+                >
+                    <Foundation name="torso-business" size={20}/>
+                </Button>
+            </HStack>
+            <VStack
+                space="50"
+                alignItems={"center"}
+            >
+                <Image 
+                    source={Logo}
+                    style={{width: 150, height: 150}}
+                />
                 <VStack
                     space="md"
+                    width={"100%"}
                 >
                     <Input
                         value={credentials.email}
+                        placeholder={"email"}
+                        bg={"white"}
+                        borderColor={"black"}
+                        borderWidth={1}
                         onChangeText={v => setCredentials(p => ({ ...p, email: v }))}
                     />
                     <Input
                         value={credentials.password}
+                        borderWidth={1}
+                        placeholder={"password"}
+                        borderColor={"black"}
+                        bg={"white"}
                         onChangeText={v => setCredentials(p => ({ ...p, password: v }))}
                     />
                     <HStack
@@ -60,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
                     >
                         <Button
                             onPress={onSubmit}
+                            variant="unstyled"
                             flex={1}
                         >
                             Login
@@ -68,8 +92,11 @@ const LoginScreen = ({ navigation }) => {
                             flex={1}
                             variant="link"
                             onPress={goToRegister}
+                            bg={"fmf.primary"}
                         >
-                            Registrer
+                            <Text
+                                color={"fmf.secondary"}
+                            >Registrer</Text>
                         </Button>
                     </HStack>
                 </VStack>
