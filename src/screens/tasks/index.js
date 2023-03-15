@@ -53,10 +53,13 @@ const TasksScreen = ({ navigation }) => {
                                                 >
                                                     <Text
                                                         fontWeight="bold"
+                                                        color={"white"}
                                                     >
                                                         {task.title}
                                                     </Text>
-                                                    <Text>
+                                                    <Text
+                                                        color={"white"}
+                                                    >
                                                         {task.description}
                                                     </Text>
                                                 </VStack>

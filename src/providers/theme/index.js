@@ -11,7 +11,7 @@ export default function ThemeProvider({children}) {
       },
       Text: {
         baseStyle: {
-          color: "white"
+          color: "black"
         }
       }
     },

@@ -71,7 +71,11 @@ const RegisterScreen = ({ navigation }) => {
                             flex={1}
                             variant="unstyled"
                         >
-                            Register
+                            <Text
+                                color={"white"}
+                            >
+                                Register
+                            </Text>
                         </Button>
                         <Button
                             flex={1}

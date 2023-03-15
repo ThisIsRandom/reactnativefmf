@@ -27,14 +27,18 @@ const CustomerList = () => {
                                         p={3}
                                     >
                                         <Box>
-                                            <Text>
+                                            <Text
+                                                color={"black"}
+                                            >
                                                 {
                                                     "Samtale om " + t.title
                                                 }
                                             </Text>
                                         </Box>
                                         <HStack>
-                                            <Text>
+                                            <Text
+                                                color={"black"}
+                                            >
                                                 {">"}
                                             </Text>
                                         </HStack>

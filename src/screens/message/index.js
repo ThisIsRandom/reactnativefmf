@@ -38,10 +38,14 @@ const MessageScreen = ({ route }) => {
                                     p={3}
                                     rounded="sm"
                                 >
-                                    <Text>
+                                    <Text
+                                        color={"black"}
+                                    >
                                         {message.user.email + " siger: "}
                                     </Text>
-                                    <Text>
+                                    <Text
+                                        color={"black"}
+                                    >
                                         {message.text}
                                     </Text>
                                 </View>

@@ -86,7 +86,11 @@ const LoginScreen = ({ navigation }) => {
                             variant="unstyled"
                             flex={1}
                         >
-                            Login
+                            <Text
+                                color={"white"}
+                            >
+                                Login
+                            </Text>
                         </Button>
                         <Button
                             flex={1}

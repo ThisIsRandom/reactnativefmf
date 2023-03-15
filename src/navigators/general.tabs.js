@@ -11,10 +11,10 @@ import { useToken } from 'native-base';
 const Tab = createBottomTabNavigator();
 
 function GeneralTabs() {
-    const [primaryColor, secondaryColor] = useToken( // the key within the theme, in this case `theme.colors`
-  'colors', // the subkey(s), resolving to `theme.colors.warning.1`
-  ['fmf.primary', 'fmf.secondary'] // a single fallback or fallback array matching the length of the previous arg
-  );
+    const [primaryColor, secondaryColor] = useToken(
+        'colors',
+        ['fmf.primary', 'fmf.secondary']
+    );
 
     return (
         <Tab.Navigator
@@ -34,7 +34,8 @@ function GeneralTabs() {
                 options={{
                     tabBarIcon: props => (
                         <MaterialIcon name="local-offer" {...props}/>
-                    )
+                    ),
+                    title: "Reklamer"
                 }}
             />
             <Tab.Screen
@@ -55,6 +56,7 @@ function GeneralTabs() {
                         <FA5Icon name="tasks" {...props} />
                     ),
                     headerShown: false,
+                    title: "Opgaver"
                 }}
             />
             <Tab.Screen
@@ -64,7 +66,8 @@ function GeneralTabs() {
                     tabBarIcon: props => (
                         <MaterialIcon name="mail" {...props} />
                     ),
-                    headerShown: false
+                    headerShown: false,
+                    title: "Beskeder"
                 }}
             />
         </Tab.Navigator>

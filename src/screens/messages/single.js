@@ -10,14 +10,18 @@ const Single = ({ onPress }) => {
                 p={3}
             >
                 <Box>
-                    <Text>
+                    <Text
+                        color={"black"}
+                    >
                         {
                             "Samtale om "
                         }
                     </Text>
                 </Box>
                 <HStack>
-                    <Text>
+                    <Text
+                        color={"black"}
+                    >
                         {">"}
                     </Text>
                 </HStack>
