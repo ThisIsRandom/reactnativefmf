@@ -4,10 +4,6 @@ import Loading from '../../components/loading'
 import useMessages from '../../service/message'
 import useMessageStream from '../../service/message-stream'
 
-const getColor = () => {
-    return
-}
-
 const MessageScreen = ({ route }) => {
     const [inp, setInp] = useState("")
 
@@ -45,8 +41,6 @@ const MessageScreen = ({ route }) => {
                 ..._style[id]
             }
         })
-
-        console.log(mapping)
 
         return mapping;
     }, [query.data])

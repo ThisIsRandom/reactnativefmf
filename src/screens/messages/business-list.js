@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import { View, Text } from 'native-base'
+import { View, Text, VStack } from 'native-base'
 import { useEffect } from 'react'
 import Loading from '../../components/loading'
 import useStreamByUser from '../../service/stream-by-user'
