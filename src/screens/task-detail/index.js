@@ -1,4 +1,4 @@
-import { View, Text, AspectRatio, ScrollView } from 'native-base'
+import { View, Text, AspectRatio, ScrollView, Box, VStack } from 'native-base'
 import { Image } from 'react-native'
 import { useEffect } from 'react'
 import { SliderBox } from "react-native-image-slider-box";
@@ -8,6 +8,7 @@ import image1 from '../../../images/GenericTattooShop.jpg'
 import image2 from '../../../images/GenericTattooShop.jpg'
 import image3 from '../../../images/Logo.png'
 import { useToken } from 'native-base';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 const TaskDetailScreen = ({ route }) => {
@@ -40,20 +41,54 @@ const TaskDetailScreen = ({ route }) => {
                 dotColor={primaryColor}
                 inactiveDotColor={secondaryColor}
             />
-            <View
-                marginLeft={2}
+            <VStack
+                flexBasis={"100%"}
+                alignItems={"center"}
+                space={5}
             >
-                <Text
-                    fontSize={32}
+                <Box
+                    w={"80%"}
+                    alignItems={"center"}
                 >
-                    {query.data.title}
-                </Text>
-                <Text
-                    fontSize={16}
+                    <Box
+                        flexDir={"row"}
+                        w={"50%"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        height={8}
+                        borderBottomWidth={1}
+                    >
+                        <MaterialCommunityIcons name="format-title" color="black" size={30} style={{position: "absolute", left: 0}}/>
+                        <Text>Titel</Text>
+                    </Box>
+                    <Text
+                        fontSize={32}
+                    >
+                        {query.data.title}
+                    </Text>
+                </Box>
+                <Box
+                    w={"80%"}
+                    alignItems={"center"}
                 >
-                    {query.data.description}
-                </Text>
-            </View>
+                    <Box
+                        flexDir={"row"}
+                        w={"50%"}
+                        justifyContent={"center"}
+                        borderBottomWidth={1}
+                        height={8}
+                        alignItems={"center"}
+                    >
+                        <MaterialCommunityIcons name="subtitles-outline" color="black" size={30} style={{position: "absolute", left: 0}}/>
+                        <Text>Beskrivelse</Text>
+                    </Box>
+                    <Text
+                        fontSize={16}
+                    >
+                        {query.data.description} 
+                    </Text>
+                </Box>
+            </VStack>
         </ScrollView>
     )
 }

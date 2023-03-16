@@ -25,6 +25,12 @@ function GeneralTabs() {
                 tabBarActiveTintColor: secondaryColor,
                 tabBarStyle: {
                     backgroundColor: primaryColor
+                },
+                headerStyle: {
+                    backgroundColor: primaryColor
+                },
+                headerTitleStyle: {
+                    color: "white"
                 }
             }}        
         >

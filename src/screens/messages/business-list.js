@@ -17,6 +17,7 @@ const BusinessList = () => {
         <View>
             {
                 query.data.map(stream => {
+                    console.log(stream)
                     return (
                         <Single
                             onPress={() => navigation.navigate("message", { streamId: stream.ID })}
