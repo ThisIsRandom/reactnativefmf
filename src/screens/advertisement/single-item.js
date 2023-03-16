@@ -1,37 +1,39 @@
-import { Text, View } from 'native-base'
+import { Text, View, Image } from 'native-base'
+import { useToken } from 'native-base';
 
 const SingleItem = ({ children }) => {
+    const [primaryColor, secondaryColor] = useToken(
+        'colors',
+        ['fmf.primary', 'fmf.secondary']
+    );
+
     return (
         <View
             style={{
                 backgroundColor: "rgba(0,0,0,.2)"
             }}
-            mb={5}
-            h={150}
-            rounded="xl"
-            shadow="xl"
+            h={250}
             justifyContent="center"
             alignItems="center"
-            position="relative"
+            borderWidth={2}
+            rounded={8}
+            borderColor={primaryColor}
+            overflow={"hidden"}
         >
-            <Text
-                fontSize={16}
-                fontWeight="bold"
-                style={{
-                    color: "rgba(0,0,0,.4)"
-                }}
-            >
-                PLACEHOLDER
-            </Text>
+            <Image 
+                source={require("../../../images/sale.jpg")}
+                w={"100%"}
+                h={"80%"}
+                resizeMode={"stretch"}
+            />
             <View
                 style={{
-                    position: "absolute",
-                    bottom: 0,
                     width: "100%",
-                    backgroundColor: "rgba(0,0,0,.5)"
+                    height: "20%",
+                    backgroundColor: primaryColor
                 }}
-                alignItems="center"
-                py={3}
+                alignItems={"center"}
+                justifyContent={"center"}
 
             >
                 <Text
