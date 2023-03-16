@@ -13,9 +13,14 @@ const TasksScreen = ({ navigation }) => {
     const [createModalVisible, setCreateModalVisible] = useState(false)
     const [messageModalVisible, setMessageModalVisible] = useState(false)
     const [activeId, setActiveId] = useState(null)
+    const [activeTitle, setActiveTitle] = useState("")
 
     const { userQuery } = useUser()
     const { query } = useTasks()
+
+    useEffect(() => {
+        console.log(query.data)
+    }, [query.data])
 
     if (query.isLoading || userQuery.isLoading) return <Loading />
 
@@ -31,51 +36,52 @@ const TasksScreen = ({ navigation }) => {
                         space={"2"}
                         mt={"2"}
                     >
-                    {
-                        query.data.length
-                            ? (
-                                query.data.map((task, idx) => {
-                                    return (
-                                        <Pressable
-                                            key={idx}
-                                            onPress={() => navigation.navigate("task-detail", { taskId: task.ID })}
-                                            alignItems={"center"}
-                                        >
-                                            <SingleTask
-                                                business={userQuery.data.profile.roleId != 1}
-                                                onClickMessage={() => {
-                                                    setActiveId(task.ID)
-                                                    setMessageModalVisible(true)
-                                                }}
+                        {
+                            query.data.length
+                                ? (
+                                    query.data.map((task, idx) => {
+                                        return (
+                                            <Pressable
+                                                key={idx}
+                                                onPress={() => navigation.navigate("task-detail", { taskId: task.ID })}
+                                                alignItems={"center"}
                                             >
-                                                <VStack
-                                                    py={2}
+                                                <SingleTask
+                                                    business={userQuery.data.profile.roleId != 1}
+                                                    onClickMessage={() => {
+                                                        setActiveId(task.ID)
+                                                        setActiveTitle(task.title)
+                                                        setMessageModalVisible(true)
+                                                    }}
                                                 >
-                                                    <Text
-                                                        fontWeight="bold"
-                                                        color={"white"}
+                                                    <VStack
+                                                        py={2}
                                                     >
-                                                        {task.title}
-                                                    </Text>
-                                                    <Text
-                                                        color={"white"}
-                                                    >
-                                                        {task.description}
-                                                    </Text>
-                                                </VStack>
-                                            </SingleTask>
-                                        </Pressable>
-                                    )
-                                })
-                            )
-                            : (
-                                <Text
-                                    color={"black"}
-                                >
-                                    Ingen opgaver
-                                </Text>
-                            )
-                    }
+                                                        <Text
+                                                            fontWeight="bold"
+                                                            color={"white"}
+                                                        >
+                                                            {task.title}
+                                                        </Text>
+                                                        <Text
+                                                            color={"white"}
+                                                        >
+                                                            {task.description}
+                                                        </Text>
+                                                    </VStack>
+                                                </SingleTask>
+                                            </Pressable>
+                                        )
+                                    })
+                                )
+                                : (
+                                    <Text
+                                        color={"black"}
+                                    >
+                                        Ingen opgaver
+                                    </Text>
+                                )
+                        }
                     </VStack>
                 </ScrollView>
                 <Button
@@ -86,7 +92,7 @@ const TasksScreen = ({ navigation }) => {
                     rounded={"100"}
                     onPress={() => setCreateModalVisible(p => !p)}
                 >
-                    <Ionicons name="create-outline" color="white" size={40}/>
+                    <Ionicons name="create-outline" color="white" size={40} />
                 </Button>
             </View>
             <CreateTaskModal
@@ -97,6 +103,7 @@ const TasksScreen = ({ navigation }) => {
                 modalVisible={messageModalVisible}
                 setModalVisible={setMessageModalVisible}
                 activeId={activeId}
+                activeTitle={activeTitle}
             />
         </>
     )

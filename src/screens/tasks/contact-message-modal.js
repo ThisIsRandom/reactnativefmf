@@ -3,7 +3,7 @@ import { Modal, FormControl, Input, Button } from 'native-base'
 
 import useMessages from '../../service/message'
 
-const ContactMessageModal = ({ modalVisible, setModalVisible, activeId }) => {
+const ContactMessageModal = ({ modalVisible, setModalVisible, activeId, activeTitle }) => {
     const [state, dispatch] = useReducer((state, action) => {
         return { ...state, ...action }
     }, {
@@ -36,8 +36,8 @@ const ContactMessageModal = ({ modalVisible, setModalVisible, activeId }) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button.Group space={2}>
-                        <Button 
-                            variant="unstyled" 
+                        <Button
+                            variant="unstyled"
                             onPress={() => {
                                 setModalVisible(false);
                             }}

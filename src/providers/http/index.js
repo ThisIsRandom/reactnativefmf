@@ -10,7 +10,7 @@ const HttpProvider = ({ children }) => {
 
     const client = useMemo(() => {
         const _client = axios.create({
-            baseURL: "https://fmfrest-production.up.railway.app/api"
+            baseURL: "http://10.0.2.2:3000/api"
         })
 
         _client.interceptors.request.use(config => {

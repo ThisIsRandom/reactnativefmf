@@ -13,11 +13,11 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import { launchImageLibrary } from 'react-native-image-picker'
 
 const images = {
-    address: <FA5 name="house-user" size={20}/>,
-    postal: <Entypo name="location" size={22}/>,
-    city: <FA5 name="city" size={16}/>,
-    phone: <AntDesign name="phone" size={20}/>,
-    email: <Fontisto name="email" size={20} color="#595048" style={{marginLeft: 5}}/>
+    address: <FA5 name="house-user" size={20} />,
+    postal: <Entypo name="location" size={22} />,
+    city: <FA5 name="city" size={16} />,
+    phone: <AntDesign name="phone" size={20} />,
+    email: <Fontisto name="email" size={20} color="#595048" style={{ marginLeft: 5 }} />
 }
 
 const ProfileScreen = ({ navigation }) => {
@@ -83,7 +83,7 @@ const ProfileScreen = ({ navigation }) => {
                 padding={10}
                 space={5}
             >
-                <Box 
+                <Box
                     alignItems={"flex-start"}
                     justifyContent={"flex-end"}
                     w="200"
@@ -97,13 +97,13 @@ const ProfileScreen = ({ navigation }) => {
                         rounded={"100"}
                         position="absolute"
                     >
-                    <Image
-                        source={image}
-                        style={{flex: 1}}
-                        resizeMode="cover"
-                    />
+                        <Image
+                            source={image}
+                            style={{ flex: 1 }}
+                            resizeMode="cover"
+                        />
                     </Box>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             backgroundColor: "#595048",
                             marginBottom: 6,
@@ -116,11 +116,16 @@ const ProfileScreen = ({ navigation }) => {
                         }}
                         onPress={() => {
                             launchImageLibrary().then((response) => {
-                                setImage((p) => [...response.assets])
+                                if (response?.assets?.length) {
+                                    setImage((p) => [...response.assets])
+                                }
                             })
+                                .catch(err => {
+                                    console.error(err)
+                                })
                         }}
                     >
-                        <FA5 name="camera" size={30} color="white"/>
+                        <FA5 name="camera" size={30} color="white" />
                     </TouchableOpacity>
                 </Box>
                 <Box
@@ -152,35 +157,35 @@ const ProfileScreen = ({ navigation }) => {
                                     mb={4}
                                 >
                                     <FormControl key={key}>
-                                    <HStack
-                                        backgroundColor="green"
-                                    >
-                                        <Input
-                                          
-                                            flex={1}
-                                            value={val}
-                                            onChangeText={v => dispatch({ [key]: v })}
-                                            InputLeftElement={cloneElement(images[key], {
-                                                style: {
-                                                    marginLeft: 5
-                                                },
-                                                color:"#595048"
-                                            })}
-                                        />
-                                    </HStack>
-                                </FormControl>
+                                        <HStack
+                                            backgroundColor="green"
+                                        >
+                                            <Input
+
+                                                flex={1}
+                                                value={val}
+                                                onChangeText={v => dispatch({ [key]: v })}
+                                                InputLeftElement={cloneElement(images[key], {
+                                                    style: {
+                                                        marginLeft: 5
+                                                    },
+                                                    color: "#595048"
+                                                })}
+                                            />
+                                        </HStack>
+                                    </FormControl>
                                 </Box>
                             )
                         })
                     }
                 </View>
                 <HStack>
-                        <Button onPress={save}
-                            backgroundColor="#595048"
-                        >
-                            Gem
-                        </Button>
-                    </HStack>
+                    <Button onPress={save}
+                        backgroundColor="#595048"
+                    >
+                        Gem
+                    </Button>
+                </HStack>
             </VStack>
         </ScrollView>
     )

@@ -12,7 +12,9 @@ const MessagesScreen = () => {
     if (userQuery.isLoading) return <Loading />
 
     return (
-        <ScrollView>
+        <ScrollView
+            padding={3}
+        >
             {
                 userQuery.data.profile.roleId == 1
                     ? (

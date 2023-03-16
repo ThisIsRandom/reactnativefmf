@@ -14,18 +14,20 @@ const BusinessList = () => {
     if (!query.data.length) return <Text>Ingen beskeder</Text>
 
     return (
-        <View>
+        <VStack
+            space={5}
+        >
             {
                 query.data.map(stream => {
-                    console.log(stream)
                     return (
                         <Single
+                            title={stream.title}
                             onPress={() => navigation.navigate("message", { streamId: stream.ID })}
                         />
                     )
                 })
             }
-        </View>
+        </VStack>
     )
 }
 

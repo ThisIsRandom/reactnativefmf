@@ -1,8 +1,12 @@
 import { View, Text, HStack, Input, Button, VStack, ScrollView } from 'native-base'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import Loading from '../../components/loading'
 import useMessages from '../../service/message'
 import useMessageStream from '../../service/message-stream'
+
+const getColor = () => {
+    return
+}
 
 const MessageScreen = ({ route }) => {
     const [inp, setInp] = useState("")
@@ -12,6 +16,40 @@ const MessageScreen = ({ route }) => {
     const { query } = useMessageStream(streamId)
 
     const { messageMutation } = useMessages()
+
+    const colors = useMemo(() => {
+        if (!query.data) return
+
+        const _colors = [
+            "fmf.primary",
+            "fmf.secondary"
+        ]
+
+        const _style = [
+            {
+                width: "3/4",
+            },
+            {
+                width: "3/4",
+                marginLeft: "1/4"
+            },
+        ]
+
+        const mapping = {}
+
+        const emails = new Set(query.data.messages.map(m => m.user.email))
+
+        Array.from(emails).forEach((email, id) => {
+            mapping[email] = {
+                bg: _colors[id],
+                ..._style[id]
+            }
+        })
+
+        console.log(mapping)
+
+        return mapping;
+    }, [query.data])
 
     const ref = useRef()
 
@@ -25,6 +63,7 @@ const MessageScreen = ({ route }) => {
                 ref={ref}
                 onContentSizeChange={() => ref.current.scrollToEnd({ animated: true })}
                 flex={1}
+                py={3}
             >
                 <VStack
                     space={3}
@@ -34,17 +73,22 @@ const MessageScreen = ({ route }) => {
                         query.data.messages.map(message => {
                             return (
                                 <View
-                                    bg="white"
                                     p={3}
                                     rounded="sm"
+
+
+                                    {
+                                    ...colors[message.user.email]
+                                    }
                                 >
                                     <Text
-                                        color={"black"}
+                                        color={"white"}
+                                        fontWeight="bold"
                                     >
                                         {message.user.email + " siger: "}
                                     </Text>
                                     <Text
-                                        color={"black"}
+                                        color={"white"}
                                     >
                                         {message.text}
                                     </Text>
@@ -54,13 +98,19 @@ const MessageScreen = ({ route }) => {
                     }
                 </VStack>
             </ScrollView>
-            <HStack w="full">
+            <HStack w="full" p={2} space={2} borderTopWidth={1} borderTopColor="gray.300">
                 <Input
                     value={inp}
                     onChangeText={setInp}
                     flex={1}
+                    borderColor="fmf.secondary"
+                    _focus={{
+                        borderColor: "fmf.primary",
+                        backgroundColor: "white"
+                    }}
                 />
                 <Button
+                    variant="unstyled"
                     onPress={() => {
                         messageMutation.mutate(
                             {
@@ -74,12 +124,15 @@ const MessageScreen = ({ route }) => {
                         setInp("")
                     }}
                 >
-                    <Text>
-                        send
+                    <Text
+                        color="white"
+                        fontWeight="bold"
+                    >
+                        SEND
                     </Text>
                 </Button>
             </HStack>
-        </View>
+        </View >
     )
 }
 

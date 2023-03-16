@@ -1,31 +1,36 @@
-import { Box, HStack, Pressable, Text, VStack } from "native-base"
+import { Box, HStack, Pressable, Text } from "native-base"
 
-const Single = ({ onPress }) => {
+const Single = ({ onPress, title }) => {
     return (
         <Pressable
             onPress={onPress}
         >
-            <VStack
-                bg="white"
-                p={3}
+            <HStack
+                bg="fmf.primary"
+                px={3}
+                py={5}
+                justifyContent="space-between"
+                rounded="md"
             >
                 <Box>
                     <Text
-                        color={"black"}
+                        color={"white"}
+                        fontWeight="bold"
+                        fontSize="sm"
                     >
                         {
-                            "Samtale om "
+                            "Samtale om " + title
                         }
                     </Text>
                 </Box>
                 <HStack>
                     <Text
-                        color={"black"}
+                        color={"white"}
                     >
                         {">"}
                     </Text>
                 </HStack>
-            </VStack>
+            </HStack>
         </Pressable>
     )
 }
