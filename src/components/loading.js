@@ -1,4 +1,5 @@
-import { View, Spinner } from 'native-base'
+import { View, Spinner, Button } from 'native-base'
+import { useState } from 'react';
 
 const Loading = () => {
     return (
@@ -11,5 +12,6 @@ const Loading = () => {
         </View>
     )
 }
+
 
 export default Loading;
